@@ -79,10 +79,12 @@ const updateProduct = async (req, res) => {
   };
   const getAllProduct = async (req, res) => {
     try {
-      const response = await ProductService.getAllProduct();
+      const {limit, page} = req.query
+      const response = await ProductService.getAllProduct(Number(limit), Number(page));
       return res.status(200).json(response);
     } catch (e) {
       return res.status(404).json({
+
         message: e,
       });
     }
