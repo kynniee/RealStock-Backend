@@ -18,10 +18,10 @@ const createUser = (newUser) => {
       }
       const hash = bcrypt.hashSync(password, 10);
       const createdUser = await User.create({
-        name,
+ 
         email,
         password: hash,
-        phone,
+ 
       });
       if (createdUser) {
         resolve({

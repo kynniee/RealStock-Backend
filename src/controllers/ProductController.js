@@ -7,7 +7,7 @@ const createProduct = async (req, res) => {
     if (!name || !image || !category || !price || !countInStock || !rating) {
       return res.status(200).json({
         status: "ERR",
-        massage: "The input is required",
+        message: "The input is required",
       });
     } 
     const response = await ProductService.createProduct(req.body);
@@ -26,7 +26,7 @@ const updateProduct = async (req, res) => {
       if (!productId) {
         return res.status(200).json({
           status: "ERR",
-          massage: "The productId is required",
+          message: "The productId is required",
         });
       }
   
@@ -45,7 +45,7 @@ const updateProduct = async (req, res) => {
       if (!productId) {
         return res.status(200).json({
           status: "ERR",
-          massage: "The productId is required",
+          message: "The productId is required",
         });
       }
   
@@ -65,7 +65,7 @@ const updateProduct = async (req, res) => {
       if (!productId) {
         return res.status(200).json({
           status: "ERR",
-          massage: "The productId is required",
+          message: "The productId is required",
         });
       }
   

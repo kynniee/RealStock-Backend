@@ -11,17 +11,17 @@ const createUser = async (req, res) => {
     if (!email || !password || !confirmPassword ) {
       return res.status(200).json({
         status: "ERR",
-        massage: "The input is required",
+        message: "The input is required",
       });
     } else if (!isCheckEmail) {
       return res.status(200).json({
         status: "ERR",
-        massage: "The input is email",
-      });
+          message: "The input is email",
+        });
     } else if (password !== confirmPassword) {
       return res.status(200).json({
         status: "ERR",
-        massage: "The password is equal confirmPassword",
+        message: "The password is equal confirmPassword",
       });
     }
     const response = await UserService.createUser(req.body);
@@ -44,12 +44,12 @@ const loginUser = async (req, res) => {
     if (!email || !password) {
       return res.status(200).json({
         status: "ERR",
-        massage: "The input is required",
+        message: "The input is required",
       });
     } else if (!isCheckEmail) {
       return res.status(200).json({
         status: "ERR",
-        massage: "The input is email",
+        message: "The input is email",
       });
     } 
     const response = await UserService.loginUser(req.body);
@@ -68,7 +68,7 @@ const updateUser = async (req, res) => {
     if (!userId) {
       return res.status(200).json({
         status: "ERR",
-        massage: "The userId is required",
+        message: "The userId is required",
       });
     }
 
@@ -87,7 +87,7 @@ const deleteUser = async (req, res) => {
     if (!userId) {
       return res.status(200).json({
         status: "ERR",
-        massage: "The userId is required",
+        message: "The userId is required",
       });
     }
 
@@ -117,7 +117,7 @@ const getDetailsUser = async (req, res) => {
     if (!userId) {
       return res.status(200).json({
         status: "ERR",
-        massage: "The userId is required",
+        message: "The userId is required",
       });
     }
 
@@ -136,7 +136,7 @@ const refreshToken = async (req, res) => {
     if (!token) {
       return res.status(200).json({
         status: "ERR",
-        massage: "The token is required",
+        message: "The token is required",
       });
     }
 
