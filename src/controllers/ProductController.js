@@ -30,7 +30,7 @@ const createProduct = async (req, res) => {
     return res.status(200).json(response);
   } catch (e) {
     return res.status(404).json({
-      message: e,
+      message:"The productId is required",
     });
   }
 };
@@ -112,46 +112,36 @@ const deleteMany = async (req, res) => {
 //     try {
 //         const { limit, page, sort, filter } = req.query
 //         const response = await ProductService.getAllProduct(Number(limit) || null, Number(page) || 0, sort, filter)
+//         console.log('response', response);
 //         return res.status(200).json(response)
 //     } catch (e) {
 //         return res.status(404).json({
-//             message: e
+//             message: "product not found"
 //         })
 //     }
 // }
 const getAllProduct = async (req, res) => {
   try {
-    let { limit, page, sort, filter } = req.query;
+      const { limit, page, sort, filter } = req.query;
+      const response = await ProductService.getAllProduct(Number(limit) || null, Number(page) || 0, sort, filter);
+      
+      console.log('response', response); // Log the response before sending it
+      
+      if (!response) {
+          return res.status(404).json({
+              message: "Product not found"
+          });
+      }
 
-    // Convert limit and page to numbers
-    limit = Number(limit) || null;
-    page = Number(page) || 0;
-
-    const response = await ProductService.getAllProduct(
-      limit,
-      page,
-      sort,
-      filter
-    );
-
-    // Example: Sending pagination info if needed
-    const totalCount = await ProductService.getTotalCount(); // Implement this in ProductService
-    const totalPages = Math.ceil(totalCount / limit);
-    const currentPage = page + 1; // Assuming page 0 means 1st page
-
-    return res.status(200).json({
-      data: response,
-      pagination: {
-        totalCount,
-        totalPages,
-        currentPage,
-      },
-    });
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    return;
+      return res.status(200).json(response);
+  } catch (e) {
+      console.error('Error fetching products:', e); // Log the error for debugging
+      return res.status(500).json({
+          message: "Internal server error"
+      });
   }
-};
+}
+
 
 const getAllType = async (req, res) => {
   try {
