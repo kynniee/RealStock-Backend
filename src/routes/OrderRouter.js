@@ -10,4 +10,4 @@ router.delete('/cancel-order/:id',authUserMiddleWare, OrderController.cancelOrde
 router.get('/get-all-order',authMiddleWare, OrderController.getAllOrder)
 
 
-module.exports = router
+module.exports = router 

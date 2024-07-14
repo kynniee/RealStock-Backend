@@ -185,7 +185,7 @@ const cancelOrderDetails = (id, data) => {
             })
         } catch (e) {
             reject(e)
-        }
+        } 
     })
 }
 

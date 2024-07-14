@@ -124,9 +124,7 @@ const getAllProduct = async (req, res) => {
   try {
       const { limit, page, sort, filter } = req.query;
       const response = await ProductService.getAllProduct(Number(limit) || null, Number(page) || 0, sort, filter);
-      
-      console.log('response', response); // Log the response before sending it
-      
+     
       if (!response) {
           return res.status(404).json({
               message: "Product not found"
